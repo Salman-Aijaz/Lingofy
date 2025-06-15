@@ -1,7 +1,4 @@
-from dotenv import load_dotenv
-from langchain.tools import Tool
 from langchain.prompts import PromptTemplate
-import logging
 from utils import clean_json_response
 from state import AgentState
 from llm import llm
@@ -10,7 +7,6 @@ from logger import logger
 def translate_text(state: AgentState) -> AgentState:
     prompt = PromptTemplate.from_template("""
 Translate the following paragraph into {lang} and return only the translated paragraph:
-
 {paragraph}
 """)
     lang_map = {"roman_urdu": "Roman Urdu", "croatian": "Croatian"}
@@ -20,14 +16,13 @@ Translate the following paragraph into {lang} and return only the translated par
     logger.info("✅ Translation completed.")
     return state
     
-
 def extract_difficult_words(state: AgentState) -> AgentState:
     prompt = PromptTemplate.from_template("""
-Extract the 10 most difficult English words from the following paragraph.
+Analyze the paragraph below and extract only those English words which are uncommon, complex, or rarely used in daily conversation.
 
-ONLY return a JSON array like this (no explanation, no code block):
+Avoid extracting simple, familiar, or commonly known words that are widely understood by most English speakers.
 
-["word1", "word2", "word3", "word4", "word5", "word6", "word7", "word8", "word9", "word10"]
+Only return a JSON array (without any explanation or code block). If there are fewer than 10 difficult words, return only those that truly qualify.
 
 Paragraph:
 {paragraph}
@@ -43,7 +38,6 @@ Paragraph:
     state.difficult_words = words
     logger.info(f"🔍 Extracted difficult words: {words}")
     return state
-
 
 def fetch_meanings_synonyms(state: AgentState) -> AgentState:
     word_info = {}
