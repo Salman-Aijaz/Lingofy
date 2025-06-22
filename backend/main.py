@@ -1,10 +1,10 @@
 from fastapi import FastAPI
-from agent import build_agent
+from backend.agent import build_agent
 from dotenv import load_dotenv
 import os
-from logger import logger
+from backend.logger import logger
 from fastapi.middleware.cors import CORSMiddleware
-from state import ParagraphInput
+from backend.state import ParagraphInput
 
 # --- Load .env ---
 load_dotenv()

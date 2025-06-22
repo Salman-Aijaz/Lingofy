@@ -1,8 +1,8 @@
 from langchain.prompts import PromptTemplate
-from utils import clean_json_response
-from state import AgentState
-from llm import llm
-from logger import logger
+from backend.utils import clean_json_response
+from backend.state import AgentState
+from backend.llm import llm
+from backend.logger import logger
 
 def translate_text(state: AgentState) -> AgentState:
     prompt = PromptTemplate.from_template("""

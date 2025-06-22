@@ -1,7 +1,7 @@
 # agent.py
 from langgraph.graph import StateGraph, END
-from state import AgentState
-from tools import translate_text ,extract_difficult_words,fetch_meanings_synonyms
+from backend.state import AgentState
+from backend.tools import translate_text ,extract_difficult_words,fetch_meanings_synonyms
 
 # --- LangGraph Agent ---
 
