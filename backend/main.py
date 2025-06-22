@@ -28,6 +28,7 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost:3000",
     "http://localhost:8080",
+    "https://lingofy.vercel.app/"
 ]
 
 app.add_middleware(
